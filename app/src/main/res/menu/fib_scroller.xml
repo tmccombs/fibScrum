@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".FibScroller" >
+    <item android:id="@+id/action_zero"
+        android:title="@string/zero"
+        android:showAsAction="always" />
+    <item android:id="@+id/action_blackhole"
+        android:title="@string/action_blackhole"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_black_hole"/>
+    <item android:id="@+id/action_idk"
+        android:title="@string/action_idk"
+        android:showAsAction="ifRoom" />
+    <item android:id="@+id/action_investigate"
+        android:showAsAction="ifRoom"
+        android:title="@string/investigate_needed"/>
+</menu>
