@@ -1,14 +1,11 @@
 package bytecurry.fibscrum;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 
 import bytecurry.fibscrum.R;
 
-public class ImageDisplay extends Activity {
+public class ImageDisplay extends DisplayActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
