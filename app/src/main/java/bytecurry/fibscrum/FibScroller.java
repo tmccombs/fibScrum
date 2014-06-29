@@ -11,8 +11,13 @@ import android.widget.AdapterView;
 
 
 public class FibScroller extends ListActivity implements AbsListView.OnScrollListener, AbsListView.OnItemClickListener {
+    /**
+     * The maximum size allowed for the list.
+     */
+    private static final int MAX_SIZE = 18; //Coresponds to Fibonnacci number 987
 
     private FibListAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +82,8 @@ public class FibScroller extends ListActivity implements AbsListView.OnScrollLis
     public void onScroll(AbsListView absListView, int firstVisible, int visibleCount, int totalCount) {
         boolean loadMore = firstVisible + visibleCount  >= totalCount;
         if (loadMore) {
-            adapter.ensureSize(totalCount);
+            int newSize = Math.min(totalCount + visibleCount, MAX_SIZE);
+            adapter.ensureSize(newSize);
         }
 
     }

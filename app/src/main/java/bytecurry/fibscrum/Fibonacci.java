@@ -1,7 +1,6 @@
 package bytecurry.fibscrum;
 
 import java.util.ArrayList;
-import java.util.Deque;
 
 /**
  * Class to generate and store Fibonacci numbers (ignoring the first 1).
@@ -19,9 +18,9 @@ public class Fibonacci {
     /**
      * Calculate the next number in the sequence and add it to the array.
      */
-    private void calcNext() {
-        int nextVal = values.get(values.size() - 1) + values.get(values.size() - 2);
-        values.add(nextVal);
+    private boolean addNext() {
+        values.add(peekNext());
+        return true;
     }
 
     /**
@@ -48,7 +47,7 @@ public class Fibonacci {
      */
     public int calculateUpTo(int i) {
         while (i >= values.size()) {
-            calcNext();
+            addNext();
         }
         return values.get(i);
     }
@@ -60,7 +59,20 @@ public class Fibonacci {
         return values.size();
     }
 
-    public int largestValue() {
-        return values.get(values.size()-1);
+
+    /**
+     * Ensure that we have calculated Fibonacci numbers upt to the given size.
+     * @param newSize The new size Fibonacci should have
+     */
+    public void ensureSize(int newSize) {
+        calculateUpTo(newSize - 1);
+    }
+
+    /**
+     * Calculate the next value. And return it, without adding it to the internal list.
+     * @return
+     */
+    public int peekNext() {
+        return values.get(values.size() - 1) + values.get(values.size() - 2);
     }
 }
