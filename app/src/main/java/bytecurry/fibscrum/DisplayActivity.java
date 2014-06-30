@@ -12,26 +12,16 @@ import android.view.ViewConfiguration;
  */
 abstract public class DisplayActivity extends Activity {
 
-    private class OnRightFling extends android.view.GestureDetector.SimpleOnGestureListener {
-        private final ViewConfiguration viewConfig;
+    private class OnRightFling extends OnFling {
 
         public OnRightFling(ViewConfiguration vc) {
-            viewConfig = vc;
+            super(vc);
         }
 
         @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            if ( e2.getX() - e1.getX() > viewConfig.getScaledPagingTouchSlop() && velocityX > viewConfig.getScaledMinimumFlingVelocity()) {
-                finish();
-                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        @Override
-        public boolean onDown(MotionEvent e) {
+        public boolean onRightFling() {
+            finish();
+            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
             return true;
         }
     }
