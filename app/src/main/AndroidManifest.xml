@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name=".TextDisplay"
-            android:label="@string/title_activity_display"
+            android:label="Text Display"
             android:parentActivityName=".FibScroller"
             android:theme="@style/Fullscreen">
             <meta-data
@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name=".ImageDisplay"
-            android:label="@string/title_activity_image_display"
+            android:label="Image Display"
             android:parentActivityName=".FibScroller"
             android:theme="@style/Fullscreen">
             <meta-data

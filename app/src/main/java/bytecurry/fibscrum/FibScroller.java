@@ -50,7 +50,7 @@ public class FibScroller extends ListActivity implements AbsListView.OnScrollLis
                 showImageDisplay(R.drawable.black_hole);
                 return true;
             case R.id.action_idk:
-                showTextDisplay(R.string.idk, R.style.DisplayText);
+                showTextDisplay(R.string.idk, R.style.DisplayQuestion);
                 return true;
             case R.id.action_investigate:
                 showTextDisplay(R.string.investigate_needed, R.style.DisplayTextSmall);

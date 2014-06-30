@@ -10,7 +10,8 @@
         android:icon="@drawable/ic_black_hole"/>
     <item android:id="@+id/action_idk"
         android:title="@string/action_idk"
-        android:showAsAction="ifRoom" />
+        android:showAsAction="always"
+        android:icon="@drawable/ic_question" />
     <item android:id="@+id/action_investigate"
         android:showAsAction="ifRoom"
         android:title="@string/investigate_needed"/>
