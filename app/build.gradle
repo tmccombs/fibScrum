@@ -14,7 +14,7 @@ class SvgTask extends DefaultTask {
 }
 
 
-["ic_launcher":48, "ic_question":32].each { name, side ->
+["ic_launcher":48, "ic_question":32, "ic_zero":32].each { name, side ->
     task "${name}_mdpi" (type:SvgTask) {
         inputFile file("src/main/raw/${name}.svg")
         outputFile file("src/main/res/drawable-mdpi/${name}.png")
@@ -38,7 +38,7 @@ class SvgTask extends DefaultTask {
     }
 }
 task icons {
-    dependsOn (["ic_launcher", "ic_question"].collectMany { name ->
+    dependsOn (["ic_launcher", "ic_question", "ic_zero"].collectMany { name ->
         ["${name}_mdpi", "${name}_hdpi", "${name}_xhdpi", "${name}_xxhdpi"]
     })
 }

@@ -3,7 +3,8 @@
     tools:context=".FibScroller" >
     <item android:id="@+id/action_zero"
         android:title="@string/zero"
-        android:showAsAction="always" />
+        android:showAsAction="always"
+        android:icon="@drawable/ic_zero"/>
     <item android:id="@+id/action_blackhole"
         android:title="@string/action_blackhole"
         android:showAsAction="always"
