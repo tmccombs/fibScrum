@@ -1,5 +1,48 @@
 apply plugin: 'com.android.application'
 
+class SvgTask extends DefaultTask {
+    @InputFile
+    File inputFile
+    @OutputFile
+    File outputFile
+    int size
+    @TaskAction
+    def generate() {
+        String s = "inkscape --export-png=$outputFile -w $size -h $size $inputFile"
+        s.execute()
+    }
+}
+
+
+["ic_launcher":48, "ic_question":32].each { name, side ->
+    task "${name}_mdpi" (type:SvgTask) {
+        inputFile file("src/main/raw/${name}.svg")
+        outputFile file("src/main/res/drawable-mdpi/${name}.png")
+        size = side
+    }
+    task "${name}_hdpi"(type:SvgTask) {
+        inputFile file("src/main/raw/${name}.svg")
+        outputFile file("src/main/res/drawable-hdpi/${name}.png")
+        size = side * 1.5
+    }
+
+    task "${name}_xhdpi"(type:SvgTask) {
+        inputFile file("src/main/raw/${name}.svg")
+        outputFile file("src/main/res/drawable-xhdpi/${name}.png")
+        size = side * 2
+    }
+    task "${name}_xxhdpi"(type:SvgTask) {
+        inputFile file("src/main/raw/${name}.svg")
+        outputFile file("src/main/res/drawable-xxhdpi/${name}.png")
+        size = side * 3
+    }
+}
+task icons {
+    dependsOn (["ic_launcher", "ic_question"].collectMany { name ->
+        ["${name}_mdpi", "${name}_hdpi", "${name}_xhdpi", "${name}_xxhdpi"]
+    })
+}
+
 android {
     compileSdkVersion 19
     buildToolsVersion '20.0.0'
@@ -23,6 +66,18 @@ android {
     productFlavors {
     }
 }
+
+gradle.projectsEvaluated {
+    android.applicationVariants.each { variant ->
+        println "Adding dependency"
+        println "Variant task: " + variant.mergeResources
+        variant.mergeResources.mustRunAfter('icons')
+        variant.processResources.dependsOn('icons')
+    }
+}
+
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
