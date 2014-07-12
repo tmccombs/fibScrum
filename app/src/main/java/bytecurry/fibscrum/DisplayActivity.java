@@ -6,6 +6,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.WindowManager;
 
 /**
  * Superclass of all display activities. It takes care of the slide back functionality.
@@ -38,6 +39,8 @@ abstract public class DisplayActivity extends Activity {
                 return detector.onTouchEvent(event);
             }
         });
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
